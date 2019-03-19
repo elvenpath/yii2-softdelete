@@ -37,7 +37,7 @@ class SoftDeleteQueryBehavior extends Behavior
      */
     public function deleted()
     {
-        return $this->owner->andWhere($this->tableName() . '.' . $this->attribute . ' IS NOT NULL');
+        return $this->owner->andWhere(['is not', $this->tableName() . '.' . $this->attribute, null]);
     }
 
     /**
@@ -45,7 +45,7 @@ class SoftDeleteQueryBehavior extends Behavior
      */
     public function notDeleted()
     {
-        return $this->owner->andWhere($this->tableName() . '.' . $this->attribute . ' IS NULL');
+        return $this->owner->andWhere([$this->tableName() . '.' . $this->attribute => null]);
     }
 
     /**
